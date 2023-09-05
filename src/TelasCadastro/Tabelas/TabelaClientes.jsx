@@ -3,7 +3,9 @@ import { Button, Container, Table } from "react-bootstrap";
 export default function TabelaClientes(props) {
     return (
         <Container>
-            <Button type="button">Novo Cliente</Button>
+            <div className="btn-tabela-cliente">
+                <Button type="button">Novo Cliente</Button> 
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr>

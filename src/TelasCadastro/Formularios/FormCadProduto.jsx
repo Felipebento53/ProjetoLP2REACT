@@ -45,6 +45,7 @@ export default function FormCadProduto(props) {
                 <option value="Pequeno" selected>Pequeno Porte</option>
                 <option value="Medio">Medio porte</option>
                 <option value="Grande">Grande porte</option>
+                <option value="Digital">Digital</option>
             </Form.Select>
           </InputGroup>
         </Form.Group>

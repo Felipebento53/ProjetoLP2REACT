@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.btn-tabela-produto{
+    margin-top: 5em;
+    margin-bottom: 4em;
+}
+
+.btn-tabela-cliente{
+    margin-top: 5em;
+    margin-bottom: 4em;
+}
+
+.top-tabela-produto{
+    font-size: 18px;
+    font-family: 'Noto Sans', sans-serif;
+}
