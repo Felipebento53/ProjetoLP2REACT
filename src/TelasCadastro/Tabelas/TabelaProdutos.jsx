@@ -4,12 +4,12 @@ import "./Tabela.css";
 export default function TabelaProdutos(props) {
     return (
         <Container>
-            <div className="btn-tabela-produto">
+            <div className="btn-tabela">
                 <Button variant="warning" type="button">Novo Produto</Button>
             </div>
             <Table variant="dark" striped bordered hover>
                 <thead>
-                    <tr className="top-tabela-produto"> 
+                    <tr className="top-tabela"> 
                         <th>Tipo</th>
                         <th>Nome</th>
                         <th>Tamanho</th>

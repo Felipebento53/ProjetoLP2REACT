@@ -1,14 +1,14 @@
-//import FormCadProduto from "./TelasCadastro/Formularios/FormCadProduto";
 //import TelaCadastroCliente from "./TelasCadastro/TelaCadastroCliente";
-//import FormCadCliente from "./TelasCadastro/Formularios/FormCadCliente";
-import TelaCadastroProduto from "./TelasCadastro/TelaCadastroProduto";
+//import TelaCadastroProduto from "./TelasCadastro/TelaCadastroProduto";
+import TelaCadastroFornededor from "./TelasCadastro/TelaCadastroFornecedor";
+
 
 
 
 function App() {
   return (
     <>
-       <TelaCadastroProduto/>
+       <TelaCadastroFornededor/>
     </>
   );
 }

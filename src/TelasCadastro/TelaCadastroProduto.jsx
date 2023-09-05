@@ -10,7 +10,7 @@ export default function TelaCadastroProduto(props) {
     const [exibirFormulario, setExibirFormulario] = useState(false);
 
     return (
-        <div className="tela-cad-produto">
+        <div className="tela-cad">
             <Container>
                 <Page>
                     {

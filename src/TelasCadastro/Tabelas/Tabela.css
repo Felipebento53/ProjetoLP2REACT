@@ -7,17 +7,12 @@
     text-decoration: none;
 }
 
-.btn-tabela-produto{
+.btn-tabela{
     margin-top: 5em;
     margin-bottom: 4em;
 }
 
-.btn-tabela-cliente{
-    margin-top: 5em;
-    margin-bottom: 4em;
-}
-
-.top-tabela-produto{
+.top-tabela{
     font-size: 18px;
     font-family: 'Noto Sans', sans-serif;
 }

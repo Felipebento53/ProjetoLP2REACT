@@ -1,11 +1,13 @@
 import { Container } from "react-bootstrap";
-import Page from "../Templates/Page";
-import FormCadCliente from "./Formularios/FormCadCliente";
-import TabelaClientes from "./Tabelas/TabelaClientes";
 import { useState } from "react";
+import Page from "../Templates/Page";
+import FormCadFornecedor from "./Formularios/FormCadFornecedor";
+import TabelaFornecedores from "./Tabelas/TabelaFornecedores";
 import "./Telas.css";
 
-export default function TelaCadastroCliente(props) {
+
+
+export default function TelaCadastroFornecedor(props) {
     const [exibirFormulario, setExibirFormulario] = useState(false);
     return (
         <div className="tela-cad">
@@ -14,7 +16,7 @@ export default function TelaCadastroCliente(props) {
                     {
                         //dinâmica em que o usuário irá alternar entre o formulário de cadastro
                         //e a visualização do registros já cadastrados.
-                        exibirFormulario ? <FormCadCliente /> : <TabelaClientes />
+                        exibirFormulario ? <FormCadFornecedor /> : <TabelaFornecedores />
                     }
                 </Page>
             </Container>

@@ -133,7 +133,7 @@ export default function FormCadCliente(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant="dark">Cadastrar Cliente</Button>
+                        <Button type="submit" variant="dark">Cadastrar</Button>
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant="warning">Voltar</Button>

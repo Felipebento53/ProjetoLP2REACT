@@ -15,16 +15,12 @@ export function Header(props) {
                                 <Nav className="me-auto">
                                     <Nav.Link href="#home">Home</Nav.Link>
                                     <Nav.Link href="#link">Link</Nav.Link>
-                                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                    <NavDropdown title="Tabelas/Cadastros" id="basic-nav-dropdown">
+                                        <NavDropdown.Item href="#action/3.1">Cliente</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.2">
-                                            Another action
+                                            Produto
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">
-                                            Separated link
-                                        </NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.3">Fornecedor</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </div>
