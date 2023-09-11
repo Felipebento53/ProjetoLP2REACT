@@ -14,7 +14,7 @@ export default function TelaCadastroProduto(props) {
             <Container>
                 <Page>
                     {
-                        exibirFormulario ? <FormCadProduto /> : <TabelaProdutos />
+                        exibirFormulario ? <FormCadProduto exibirFormulario={setExibirFormulario} /> : <TabelaProdutos exibirFormulario={setExibirFormulario} />
                     }
                 </Page>
             </Container>

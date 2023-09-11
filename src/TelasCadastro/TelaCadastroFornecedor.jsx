@@ -16,7 +16,7 @@ export default function TelaCadastroFornecedor(props) {
                     {
                         //dinâmica em que o usuário irá alternar entre o formulário de cadastro
                         //e a visualização do registros já cadastrados.
-                        exibirFormulario ? <FormCadFornecedor /> : <TabelaFornecedores />
+                        exibirFormulario ? <FormCadFornecedor exibirFormulario={setExibirFormulario} /> : <TabelaFornecedores exibirFormulario={setExibirFormulario} />
                     }
                 </Page>
             </Container>

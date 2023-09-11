@@ -5,7 +5,9 @@ export default function TabelaFornecedor(props) {
     return (
         <Container>
             <div className="btn-tabela">
-                <Button variant="warning" type="button">Novo Fornecedor</Button> 
+                <Button variant="warning" type="button" onClick={()=>{
+                    props.exibirFormulario(true);
+                }}>Novo Fornecedor</Button> 
             </div>
             <Table variant="dark" striped bordered hover>
                 <thead>
