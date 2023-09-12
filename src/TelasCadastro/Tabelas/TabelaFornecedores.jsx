@@ -4,8 +4,8 @@ import "./Tabela.css";
 export default function TabelaFornecedor(props) {
     return (
         <Container>
-            <div className="btn-tabela">
-                <Button variant="warning" type="button" onClick={()=>{
+            <div className="btn-tabela-produto">
+                <Button variant="ligth" type="button" onClick={()=>{
                     props.exibirFormulario(true);
                 }}>Novo Fornecedor</Button> 
             </div>

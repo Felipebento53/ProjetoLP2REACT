@@ -5,7 +5,7 @@ export default function TabelaClientes(props) {
     return (
         <Container>
             <div className="btn-tabela">
-                <Button variant="warning" type="button" onClick={()=>{
+                <Button variant="ligth" type="button" className="btn-tabela1" onClick={()=>{
                     props.exibirFormulario(true);
                 }}>Novo Cliente</Button> 
             </div>
