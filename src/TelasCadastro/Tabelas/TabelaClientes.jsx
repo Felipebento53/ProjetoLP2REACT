@@ -1,5 +1,6 @@
 import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
+import CriadorTabela from "../CriadorTabelas";
 
 export default function TabelaClientes(props) {
     return (
@@ -15,26 +16,12 @@ export default function TabelaClientes(props) {
                         <th>CPF</th>
                         <th>Nome</th>
                         <th>Endereço/Nº</th>
+                        <th>Bairro</th>
                         <th>Cidade/UF</th>
                         <th>CEP</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>000.000.000-00</td>
-                        <td>Maria Aparecida Fake</td>
-                        <td>Rua das Flores, n° 2569</td>
-                        <td>Presidente Prudente/SP</td>
-                        <td>19015-000</td>
-                    </tr>
-                    <tr>
-                        <td>000.000.000-00</td>
-                        <td>João Augusto Fake</td>
-                        <td>Rua das Pedras, n° 36</td>
-                        <td>Presidente Prudente/SP</td>
-                        <td>19035-000</td>
-                    </tr>
-                </tbody>
+                <CriadorTabela/>
             </Table>
         </Container>
     );

@@ -1,7 +1,6 @@
 import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
 export default function FormCadCliente(props) {
-
     const estadoInicialCliente = {
         cpf:'',
         nome:'',
@@ -17,7 +16,6 @@ export default function FormCadCliente(props) {
 
     function ManipularMudancas(e){
         const componente = e.currentTarget;
-        console.log(componente.value);
         setCliente({...cliente,[componente.name]:componente.value});
     }
 
@@ -26,6 +24,11 @@ export default function FormCadCliente(props) {
         if (form.checkValidity()){
             //todos os campos preenchidos
             //mandar os dados para o backend
+            var obj = JSON.parse(localStorage.getItem("lista"))
+            if(obj==null)
+                obj=[]
+            obj.push(cliente);
+            localStorage.setItem("lista",JSON.stringify(obj))
             setCliente(estadoInicialCliente);
             setFormValidado(false);
         }
@@ -40,12 +43,11 @@ export default function FormCadCliente(props) {
 
     return (
         <Container>
-            <Form>
+            <Form noValidate validated={formValidado} onSubmit={ManipularSubmit}>
                 <Row>
                     <Col>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="CPF:"
                                 className="mb-3"
                             >
@@ -60,7 +62,6 @@ export default function FormCadCliente(props) {
                     <Col>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="Nome Completo:"
                                 className="mb-3"
                             >
@@ -74,7 +75,6 @@ export default function FormCadCliente(props) {
                     <Col md={10}>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="Endereço:"
                                 className="mb-3"
                             >
@@ -86,7 +86,6 @@ export default function FormCadCliente(props) {
                     <Col md={2}>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="Número"
                                 className="mb-3"
                             >
@@ -100,7 +99,6 @@ export default function FormCadCliente(props) {
                     <Col md={4}>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="Bairro:"
                                 className="mb-3"
                             >
@@ -112,7 +110,6 @@ export default function FormCadCliente(props) {
                     <Col md={5}>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="Cidade"
                                 className="mb-3"
                             >
@@ -123,8 +120,8 @@ export default function FormCadCliente(props) {
                     </Col>
                     <Col md={3}>
                         <FloatingLabel controlId="floatingSelect" label="UF:">
-                            <Form.Select aria-label="Unidades Federativas brasileiras" id="uf" name="uf" value={cliente.uf} onChange={ManipularMudancas} required>
-                                <option value="SP" selected>São Paulo</option>
+                            <Form.Select aria-label="Unidades Federativas brasileiras" id="uf" name="uf" value={cliente.uf} onChange={ManipularMudancas}   required>
+                                <option value="SP">São Paulo</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
@@ -159,7 +156,6 @@ export default function FormCadCliente(props) {
                     <Col md={4}>
                         <Form.Group>
                             <FloatingLabel
-                                controlId="floatingInput"
                                 label="CEP:"
                                 className="mb-3"
                             >
