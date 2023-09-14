@@ -96,7 +96,9 @@ export default function FormCadFornecedor(props) {
                     <Button type="submit" variant="dark">Cadastrar</Button>
                 </Col>
                 <Col md={6} offset={5}>
-                    <Button type="button" variant="warning">Voltar</Button>
+                    <Button type="button" variant="warning" onClick={()=>{
+                        props.exibirFormulario(false);
+                    }}>Voltar</Button>
                 </Col>
             </Row>
         </Form>

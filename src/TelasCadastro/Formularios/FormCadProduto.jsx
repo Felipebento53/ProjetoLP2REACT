@@ -60,7 +60,9 @@ export default function FormCadProduto(props) {
         </Form.Group>
       </Row>
       <Button variant='dark' className='cad-produto-button' type="submit">Cadastrar Produto</Button>
-      <Button variant='warning' className='cad-produto-button'>Voltar</Button>
+      <Button variant='warning' className='cad-produto-button' onClick={()=>{
+        props.exibirFormulario(false);
+      }}>Voltar</Button>
     </Form>
   );
 }
