@@ -6,20 +6,45 @@ import Row from 'react-bootstrap/Row';
 
 
 export default function FormCadFornecedor(props) {
-    const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+    const estadoInicialFornecedor = {
+        nome:'',
+        cnpj:'',
+        cidade:'',
+        uf:'SP',
+        cep:''
+    }
+    const [fornecedor, setFornecedor] = useState(estadoInicialFornecedor);
+    const [formValidado, setFormValidado] = useState(false); 
+
+    function ManipularMudancas(e){
+        const componente = e.currentTarget;
+        setFornecedor({...fornecedor,[componente.name]:componente.value});
+    }
+
+    function ManipularSubmit(e){
+        const form = e.currentTarget; 
+        if (form.checkValidity()){
+            //todos os campos preenchidos
+            //mandar os dados para o backend
+            var obj = JSON.parse(localStorage.getItem("lista"))
+            if(obj==null)
+                obj=[]
+            obj.push(fornecedor);
+            localStorage.setItem("lista",JSON.stringify(obj))
+            setFornecedor(estadoInicialFornecedor);
+            setFormValidado(false);
+        }
+        else{
+            setFormValidado(true);
         }
 
-        setValidated(true);
-    };
+        e.stopPropagation();
+        e.preventDefault();
+    }
 
     return (
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate validated={formValidado} onSubmit={ManipularSubmit}>
             <Row className="mb-3">
                 <Form.Group as={Col} md="3" controlId="validationCustom01">
                     <Form.Label>Nome do Fornecedor</Form.Label>
@@ -27,6 +52,10 @@ export default function FormCadFornecedor(props) {
                         required
                         type="text"
                         placeholder="Nome..."
+                        name='nome-fornecedor'
+                        id='nome-fornecedor'
+                        value={fornecedor.nome}
+                        onChange={ManipularMudancas}
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
@@ -36,6 +65,10 @@ export default function FormCadFornecedor(props) {
                         required
                         type="text"
                         placeholder="00.000.000/0001-00"
+                        name='cnpj'
+                        id='cnpj'
+                        value={fornecedor.cnpj}
+                        onChange={ManipularMudancas}
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
@@ -43,14 +76,14 @@ export default function FormCadFornecedor(props) {
             <Row className="mb-3">
                 <Form.Group as={Col} md="6" controlId="validationCustom03">
                     <Form.Label>Cidade</Form.Label>
-                    <Form.Control type="text" placeholder="Cidade do fornecedor..." required />
+                    <Form.Control type="text" placeholder="Cidade do fornecedor..." id='cidade-fornecedor' name='cidade-fornecedor' value={fornecedor.cidade} onChange={ManipularMudancas} required />
                     <Form.Control.Feedback type="invalid">
                         Por favor digite a cidade!
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="3" controlId="validationCustom04">
                     <Form.Label>UF</Form.Label>
-                    <Form.Select aria-label="Unidades Federativas brasileiras">
+                    <Form.Select aria-label="Unidades Federativas brasileiras" name='uf-fornecedor' id='uf-fornecedor' onChange={ManipularMudancas} value={fornecedor.uf} required>
                         <option value="SP" selected>São Paulo</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -85,7 +118,7 @@ export default function FormCadFornecedor(props) {
                 </Form.Group>
                 <Form.Group as={Col} md="3" controlId="validationCustom05">
                     <Form.Label>CEP</Form.Label>
-                    <Form.Control type="text" placeholder="CEP do fornecedor..." required />
+                    <Form.Control type="text" placeholder="CEP do fornecedor..." id='cep-fornecedor' name='cep-fornecedor' value={fornecedor.cep} onChange={ManipularMudancas} required />
                     <Form.Control.Feedback type="invalid">
                         Por favor digite o CEP!
                     </Form.Control.Feedback>

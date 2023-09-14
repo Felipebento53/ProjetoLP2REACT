@@ -1,5 +1,6 @@
 import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
+import CriadorTabelas from "../CriadorTabelas";
 
 export default function TabelaFornecedor(props) {
     return (
@@ -19,22 +20,7 @@ export default function TabelaFornecedor(props) {
                         <th>CEP</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>João Trasportes</td>
-                        <td>00.000.000/0001-00</td>
-                        <td>Cascavel</td>
-                        <td>PR</td>
-                        <td>19028-000</td>
-                    </tr>
-                    <tr>
-                        <td>Amigão Transportadora</td>
-                        <td>00.000.000/0001-00</td>
-                        <td>Rio de Janeiro</td>
-                        <td>RJ</td>
-                        <td>19056-000</td>
-                    </tr>
-                </tbody>
+                <CriadorTabelas/>
             </Table>
         </Container>
     );
