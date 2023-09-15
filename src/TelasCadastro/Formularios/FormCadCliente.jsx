@@ -1,16 +1,9 @@
+/// Terminar os codigos do professor nesta tela
+/// Arrumar o excluir
 import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
 export default function FormCadCliente(props) {
-    const estadoInicialCliente = {
-        cpf:'',
-        nome:'',
-        endereco:'',
-        numero:'',
-        bairro:'',
-        cidade:'',
-        uf:'SP',
-        cep:''
-    }
+    const estadoInicialCliente = props.estadoInicialCliente
     const [cliente, setCliente] = useState(estadoInicialCliente);
     const [formValidado, setFormValidado] = useState(false); 
 
@@ -24,13 +17,14 @@ export default function FormCadCliente(props) {
         if (form.checkValidity()){
             //todos os campos preenchidos
             //mandar os dados para o backend
-            var obj = JSON.parse(localStorage.getItem("lista"))
-            if(obj==null)
-                obj=[]
-            obj.push(cliente);
-            localStorage.setItem("lista",JSON.stringify(obj))
+            if(!props.modoEdicao){
+                props.setLista([...props.lista,cliente])
+            }else{
+                props.setLista([...props.lista.filter((itemCliente)=>itemCliente.cpf!==cliente.cpf)])
+            }
             setCliente(estadoInicialCliente);
             setFormValidado(false);
+            console.log(props.lista)
         }
         else{
             setFormValidado(true);
@@ -167,7 +161,7 @@ export default function FormCadCliente(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant="dark">Cadastrar</Button>
+                        <Button type="submit" variant="dark">{props.modoEdicao? "Alterar":"Cadastrar"}</Button>
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant="warning" onClick={()=>{

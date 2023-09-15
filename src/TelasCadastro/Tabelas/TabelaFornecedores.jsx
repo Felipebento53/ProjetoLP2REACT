@@ -1,6 +1,6 @@
 import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
-import CriadorTabelas from "../CriadorTabelas";
+
 
 export default function TabelaFornecedor(props) {
     return (
@@ -20,7 +20,7 @@ export default function TabelaFornecedor(props) {
                         <th>CEP</th>
                     </tr>
                 </thead>
-                <CriadorTabelas/>
+                
             </Table>
         </Container>
     );
