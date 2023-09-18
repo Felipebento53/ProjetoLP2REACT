@@ -3,8 +3,8 @@
 import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
 export default function FormCadCliente(props) {
-    const estadoInicialCliente = props.estadoInicialCliente
-    const [cliente, setCliente] = useState(estadoInicialCliente);
+    const estadoInicialCliente = props.clienteEdicao 
+    const [cliente, setCliente] = useState(props.clienteEdicao);
     const [formValidado, setFormValidado] = useState(false); 
 
     function ManipularMudancas(e){
@@ -18,9 +18,13 @@ export default function FormCadCliente(props) {
             //todos os campos preenchidos
             //mandar os dados para o backend
             if(!props.modoEdicao){
+                //Nao esta no modo edicao
                 props.setLista([...props.lista,cliente])
             }else{
+                //Esta no modo edicao
                 props.setLista([...props.lista.filter((itemCliente)=>itemCliente.cpf!==cliente.cpf)])
+                props.setLista([...props.lista,cliente])
+                props.setEdicao(false)
             }
             setCliente(estadoInicialCliente);
             setFormValidado(false);
@@ -166,6 +170,7 @@ export default function FormCadCliente(props) {
                     <Col md={6} offset={5}>
                         <Button type="button" variant="warning" onClick={()=>{
                             props.exibirFormulario(false);
+                            props.setEdicao(false)
                         }}>Voltar</Button>
                     </Col>
                 </Row>
