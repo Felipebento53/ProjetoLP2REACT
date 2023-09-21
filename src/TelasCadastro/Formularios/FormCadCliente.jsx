@@ -1,42 +1,57 @@
 /// Terminar os codigos do professor nesta tela
 /// Arrumar o excluir
-import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Button, Container, Form, Row, Col, FloatingLabel, Alert } from "react-bootstrap";
 import { useState } from "react";
-export default function FormCadCliente(props) {
-    const estadoInicialCliente = props.clienteEdicao 
-    const [cliente, setCliente] = useState(props.clienteEdicao);
-    const [formValidado, setFormValidado] = useState(false); 
 
-    function ManipularMudancas(e){
+export default function FormCadCliente(props) {
+    const estadoInicialCliente = props.clienteEdicao
+    const [cliente, setCliente] = useState(props.clienteEdicao);
+    const [formValidado, setFormValidado] = useState(false);
+    const [alerta, setAlerta] = useState(false);
+
+    function ManipularMudancas(e) {
         const componente = e.currentTarget;
-        setCliente({...cliente,[componente.name]:componente.value});
+        setCliente({ ...cliente, [componente.name]: componente.value });
     }
 
-    function ManipularSubmit(e){
-        const form = e.currentTarget; 
-        if (form.checkValidity()){
+    function ManipularSubmit(e) {
+        const form = e.currentTarget;
+        
+        if (form.checkValidity()) {
             //todos os campos preenchidos
             //mandar os dados para o backend
-            if(!props.modoEdicao){
+            if (!props.modoEdicao) {
                 //Nao esta no modo edicao
-                props.setLista([...props.lista,cliente])
-            }else{
+                props.setLista([...props.lista, cliente])
+            } else {
                 //Esta no modo edicao
-                props.setLista([...props.lista.filter((itemCliente)=>itemCliente.cpf!==cliente.cpf)])
-                props.setLista([...props.lista,cliente])
+                props.setLista([...props.lista.filter((itemCliente) => itemCliente.cpf !== cliente.cpf)])
+                props.setLista([...props.lista, cliente])
                 props.setEdicao(false)
             }
             setCliente(estadoInicialCliente);
             setFormValidado(false);
             console.log(props.lista)
         }
-        else{
+        else {
             setFormValidado(true);
+        }
+
+        if(!form.checkValidity()){
+            setAlerta(false);
+        }
+        else{
+            setAlerta(true);
+            setTimeout(() => {
+            setAlerta(false);
+        }, 3000);
         }
 
         e.stopPropagation();
         e.preventDefault();
-    }
+
+        
+    };
 
 
     return (
@@ -118,7 +133,7 @@ export default function FormCadCliente(props) {
                     </Col>
                     <Col md={3}>
                         <FloatingLabel controlId="floatingSelect" label="UF:">
-                            <Form.Select aria-label="Unidades Federativas brasileiras" id="uf" name="uf" value={cliente.uf} onChange={ManipularMudancas}   required>
+                            <Form.Select aria-label="Unidades Federativas brasileiras" id="uf" name="uf" value={cliente.uf} onChange={ManipularMudancas} required>
                                 <option value="SP">São Paulo</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -165,16 +180,21 @@ export default function FormCadCliente(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant="dark">{props.modoEdicao? "Alterar":"Cadastrar"}</Button>
+                        <Button type="submit" variant="dark">{props.modoEdicao ? "Alterar" : "Cadastrar"}</Button>
                     </Col>
                     <Col md={6} offset={5}>
-                        <Button type="button" variant="warning" onClick={()=>{
+                        <Button type="button" variant="warning" onClick={() => {
                             props.exibirFormulario(false);
                             props.setEdicao(false)
                         }}>Voltar</Button>
                     </Col>
                 </Row>
             </Form>
+            {alerta && (
+                <Alert variant="success" className="mt-3">
+                    Cadastro de cliente bem-sucedido!
+                </Alert>
+            )}
         </Container>
     );
 }

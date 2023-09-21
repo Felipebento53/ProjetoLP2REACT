@@ -4,10 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
 import "./FormStyle.css";
+
 
 export default function FormCadProduto(props) {
   const [validated, setValidated] = useState(false);
+  const [alerta, setAlerta] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -15,8 +18,12 @@ export default function FormCadProduto(props) {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    setAlerta(true);
     setValidated(true);
+
+    setTimeout(() => {
+      setAlerta(false);
+    }, 3000);
   };
 
   return (
@@ -42,10 +49,10 @@ export default function FormCadProduto(props) {
           <Form.Label>Porte do Produto</Form.Label>
           <InputGroup hasValidation>
             <Form.Select aria-label="*">
-                <option value="Pequeno" selected>Pequeno Porte</option>
-                <option value="Medio">Medio porte</option>
-                <option value="Grande">Grande porte</option>
-                <option value="Digital">Digital</option>
+              <option value="Pequeno" selected>Pequeno Porte</option>
+              <option value="Medio">Medio porte</option>
+              <option value="Grande">Grande porte</option>
+              <option value="Digital">Digital</option>
             </Form.Select>
           </InputGroup>
         </Form.Group>
@@ -60,9 +67,14 @@ export default function FormCadProduto(props) {
         </Form.Group>
       </Row>
       <Button variant='dark' className='cad-produto-button' type="submit">Cadastrar Produto</Button>
-      <Button variant='warning' className='cad-produto-button' onClick={()=>{
+      <Button variant='warning' className='cad-produto-button' onClick={() => {
         props.exibirFormulario(false);
       }}>Voltar</Button>
+      {alerta && (
+        <Alert variant="success" className="mt-3">
+          Cadastro bem-sucedido! Esta mensagem desaparecerá em 3 segundos.
+        </Alert>
+      )}
     </Form>
   );
 }

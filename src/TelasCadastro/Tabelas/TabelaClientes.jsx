@@ -1,13 +1,21 @@
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table, Alert} from "react-bootstrap";
+import { useState } from "react";
 import "./Tabela.css";
 
 export default function TabelaClientes(props) {
+
+    const [alerta, setAlerta] = useState(false); 
 
     function excluir(cliente){
         console.log(props.lista)
         if(window.confirm('Deseja realmente excluir? '))
         props.setLista(props.lista.filter((itemLista=> cliente.cpf!==itemLista.cpf)))
         console.log(props.lista.filter((itemLista=> cliente.cpf!==itemLista.cpf)))
+
+        setAlerta(true);
+        setTimeout(() => {
+            setAlerta(false);
+        }, 3000);
     }
 
     function editarCliente(cliente){
@@ -47,7 +55,7 @@ export default function TabelaClientes(props) {
                                     <td>{cliente.cidade+'/'+cliente.uf}</td>
                                     <td>{cliente.cep}</td>
                                     <td>
-                                        <Button onClick={()=>{
+                                        <Button variant="danger" onClick={()=>{
                                             excluir(cliente)
                                             
                                         }}>
@@ -71,6 +79,11 @@ export default function TabelaClientes(props) {
                     }
                 </tbody>
             </Table>
+            {alerta && (
+                <Alert variant="danger" className="mt-3">
+                    Exclusao Realizada!
+                </Alert>
+            )}
         </Container>
     );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -6,15 +6,8 @@ import Row from 'react-bootstrap/Row';
 
 
 export default function FormCadFornecedor(props) {
-
-    const estadoInicialFornecedor = {
-        nome:'',
-        cnpj:'',
-        cidade:'',
-        uf:'SP',
-        cep:''
-    }
-    const [fornecedor, setFornecedor] = useState(estadoInicialFornecedor);
+    const estadoInicialFornecedor = props.fornecedorEdicao
+    const [fornecedor, setFornecedor] = useState(props.fornecedorEdicao);
     const [formValidado, setFormValidado] = useState(false); 
 
     function ManipularMudancas(e){
@@ -25,13 +18,14 @@ export default function FormCadFornecedor(props) {
     function ManipularSubmit(e){
         const form = e.currentTarget; 
         if (form.checkValidity()){
-            //todos os campos preenchidos
-            //mandar os dados para o backend
-            var obj = JSON.parse(localStorage.getItem("lista"))
-            if(obj==null)
-                obj=[]
-            obj.push(fornecedor);
-            localStorage.setItem("lista",JSON.stringify(obj))
+            if(!props.modoEdicao){
+                props.setLista([...props.lista, fornecedor])
+            }
+            else{
+                props.setLista([...props.lista.filter((itemFornecedor) => itemFornecedor.cnpj !== fornecedor.cnpj)])
+                props.setLista([...props.lista, fornecedor])
+                props.setEdicao(false)
+            }
             setFornecedor(estadoInicialFornecedor);
             setFormValidado(false);
         }
@@ -126,7 +120,7 @@ export default function FormCadFornecedor(props) {
             </Row>
             <Row>
                 <Col md={6} offset={5} className="d-flex justify-content-end">
-                    <Button type="submit" variant="dark">Cadastrar</Button>
+                    <Button type="submit" variant="dark">{props.modoEdicao ? "Alterar" : "Cadastrar"}</Button>
                 </Col>
                 <Col md={6} offset={5}>
                     <Button type="button" variant="warning" onClick={()=>{
