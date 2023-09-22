@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
 
-
-.btn-tabela{
-    margin-top: 5em;
-    margin-bottom: 4em;
-    width: 10em;
+.btn-tabela,
+.btn-tabela-produto {
+    margin-top: 5%;
+    margin-bottom: 4%;
+    width: 100%;
 }
 
-.top-tabela{
+.top-tabela {
     font-size: 18px;
     font-family: 'Noto Sans', sans-serif;
 }
 
-
-.btn-tabela {
-    padding: 15px 25px;
+.btn-tabela,
+.btn-tabela-produto {
+    padding: 4% 6%;
     border: unset;
     border-radius: 15px;
     color: #212121;
@@ -29,60 +29,14 @@
     background: #ffffb3;
     position: relative;
     font-weight: bold;
-    font-size: 17px;
-    -webkit-box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
+    font-size: 4vw; /* Usando viewport width para tamanho de fonte responsivo */
+    -webkit-box-shadow: 4px 8px 1px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 1px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms;
     overflow: hidden;
-   }
-   
-.btn-tabela::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    border-radius: 15px;
-    background-color: #ffca2c;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    transition: all 250ms
-   }
-   
-.btn-tabela:hover {
-    color: black;
-    
-   }
-
-.btn-tabela:hover::before {
-    width: 100%;
 }
 
-
-.btn-tabela-produto{
-    margin-top: 5em;
-    margin-bottom: 4em;
-    width: 10em;
-}
-
-.btn-tabela-produto{
-    padding: 15px 25px;
-    border: unset;
-    border-radius: 15px;
-    color: #212121;
-    z-index: 1;
-    background: #ffffb3;
-    position: relative;
-    font-weight: bold;
-    font-size: 20px;
-    -webkit-box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    transition: all 250ms;
-    overflow: hidden;
-   }
-   
+.btn-tabela::before,
 .btn-tabela-produto::before {
     content: "";
     position: absolute;
@@ -93,16 +47,25 @@
     border-radius: 15px;
     background-color: #ffca2c;
     z-index: -1;
-    -webkit-box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 1px -3px rgba(0,0,0,0.27);
-    transition: all 250ms
-   }
-   
+    -webkit-box-shadow: 4px 8px 1px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 1px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+}
+
+.btn-tabela:hover,
 .btn-tabela-produto:hover {
     color: black;
-    
-   }
+}
 
+.btn-tabela:hover::before,
 .btn-tabela-produto:hover::before {
     width: 100%;
+}
+
+/* Adicione media queries conforme necessário para ajustar o estilo em tamanhos de tela diferentes */
+@media screen and (max-width: 768px) {
+    .btn-tabela,
+    .btn-tabela-produto {
+        font-size: 6vw; /* Ajuste o tamanho da fonte para telas menores */
+    }
 }
