@@ -81,7 +81,7 @@ export default function TabelaClientes(props) {
             </Table>
             {alerta && (
                 <Alert variant="danger" className="mt-3">
-                    Exclusao Realizada!
+                    Exclusao de cliente realizada com sucesso!
                 </Alert>
             )}
         </Container>
