@@ -16,7 +16,6 @@ export function Header(props) {
                             <div className="header-navbar">
                                 <Nav className="me-auto">
                                     <Nav.Link as={Link} to="/">Home</Nav.Link>
-                                    <Nav.Link as={Link} to="/">Link</Nav.Link>
                                     <NavDropdown title="Tabelas/Cadastros" id="basic-nav-dropdown">
                                         <NavDropdown.Item as={Link} to="/cliente">Cliente</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/produto">Produto</NavDropdown.Item>
