@@ -13,7 +13,7 @@ export default function TelaCadastroProduto(props) {
                     <div className="tela-home">
                         <h1>Aqui vai ser a </h1>
                         <h1>Pagina inicial do</h1>
-                        <h1>Sistemasauhsaaasdau!</h1>
+                        <h1>Sistemaasddasdas!</h1>
                     </div>
                 </Page>
             </Container>
