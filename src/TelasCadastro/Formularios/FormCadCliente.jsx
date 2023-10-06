@@ -31,7 +31,6 @@ export default function FormCadCliente(props) {
             }
             setCliente(estadoInicialCliente);
             setFormValidado(false);
-            console.log(props.lista)
         }
         else {
             setFormValidado(true);

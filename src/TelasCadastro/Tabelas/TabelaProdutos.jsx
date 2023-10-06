@@ -1,7 +1,8 @@
 import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
-
+import RenderizadorProduto from "../Renderizadores/RenderizadorProduto";
 export default function TabelaProdutos(props) {
+    const lista = JSON.parse(localStorage.getItem("produtos"))
     return (
         <Container>
             <div className="btn-tabela-produto">
@@ -9,29 +10,26 @@ export default function TabelaProdutos(props) {
                     props.exibirFormulario(true);
                 }}>Novo Produto</Button>
             </div>
-            <Table variant="dark" striped bordered hover>
+            <Table className="table table-dark table-hover" striped bordered hover>
                 <thead>
                     <tr className="top-tabela"> 
+                        <th>ID</th>
                         <th>Tipo</th>
                         <th>Nome</th>
+                        <th>Categoria</th>
                         <th>Tamanho</th>
                         <th>Valor(R$)</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Produto fisico</td>
-                        <td>Notebook </td>
-                        <td>Medio Porte</td>
-                        <td>6599,00</td>
-                    </tr>
-                    <tr>
-                        <td>Produto Digital</td>
-                        <td>Chave de ativação Windows</td>
-                        <td>Digital</td>
-                        <td>150,00</td>
-                    </tr>
+                    {
+                        lista.map((produto)=>
+                            <RenderizadorProduto  key={produto.id} produto={produto}/>
+                        )
+                    }
                 </tbody>
+                
             </Table>
         </Container>
     );
