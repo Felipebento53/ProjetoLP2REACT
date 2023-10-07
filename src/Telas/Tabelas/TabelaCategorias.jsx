@@ -21,20 +21,22 @@ export default function TabelaCategorias(props) {
             <Col>
               <Form.Group>
                 <br />
-                <Form.Label>Categorias</Form.Label>
-                <Form.Select
-                  aria-label="Categorias"
-                  value={categoriaValue}
-                  id="categoria"
-                  name="categoria"
-                  onChange={mudancaSelect}
-                  required
-                >
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                </Form.Select>
+                <div className="select-cat">
+                  <Form.Label>Categorias</Form.Label>
+                  <Form.Select
+                    aria-label="Categorias"
+                    value={categoriaValue}
+                    id="categoria"
+                    name="categoria"
+                    onChange={mudancaSelect}
+                    required
+                  >
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </Form.Select>
+                </div>
               </Form.Group>
             </Col>
           </Row>
@@ -54,7 +56,7 @@ export default function TabelaCategorias(props) {
         <tbody>
           {lista.map((produto) =>
             produto.categoria === categoriaValue ? (
-              <RenderizadorProduto key={produto.id} produto={produto} acoes={false}/>
+              <RenderizadorProduto key={produto.id} produto={produto} acoes={false} />
             ) : null
           )}
         </tbody>
