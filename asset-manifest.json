@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ProjetoLP2REACT/static/css/main.e96fecee.css",
-    "main.js": "/ProjetoLP2REACT/static/js/main.cbfaa949.js",
+    "main.js": "/ProjetoLP2REACT/static/js/main.45718fee.js",
     "index.html": "/ProjetoLP2REACT/index.html",
     "main.e96fecee.css.map": "/ProjetoLP2REACT/static/css/main.e96fecee.css.map",
-    "main.cbfaa949.js.map": "/ProjetoLP2REACT/static/js/main.cbfaa949.js.map"
+    "main.45718fee.js.map": "/ProjetoLP2REACT/static/js/main.45718fee.js.map"
   },
   "entrypoints": [
     "static/css/main.e96fecee.css",
-    "static/js/main.cbfaa949.js"
+    "static/js/main.45718fee.js"
   ]
 }
