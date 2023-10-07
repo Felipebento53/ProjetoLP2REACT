@@ -2,7 +2,8 @@ import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
 import RenderizadorProduto from "../Renderizadores/RenderizadorProduto";
 export default function TabelaProdutos(props) {
-    const lista = JSON.parse(localStorage.getItem("produtos"))
+    const lista = JSON.parse(localStorage.getItem("produtos"));
+
     return (
         <Container>
             <div className="btn-tabela-produto">

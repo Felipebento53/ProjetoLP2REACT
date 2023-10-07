@@ -9,6 +9,15 @@ import "./Telas.css";
 
 export default function TelaCadastroFornecedor(props) {
     const [exibirFormulario, setExibirFormulario] = useState(false);
+    const [listaFornecedores,setListaFornecedores] = useState([]);
+    const [fornEdicao,setFornEdicao] = useState({
+        cnpj:'',
+        nome:'',
+        cidade:'',
+        uf:'SP',
+        cep:''
+    });
+    const [modoEdicao,setModoEdicao] = useState(false);
     return (
         <div className="tela-cad">
             <Container>
@@ -16,7 +25,7 @@ export default function TelaCadastroFornecedor(props) {
                     {
                         //dinâmica em que o usuário irá alternar entre o formulário de cadastro
                         //e a visualização do registros já cadastrados.
-                        exibirFormulario ? <FormCadFornecedor exibirFormulario={setExibirFormulario} /> : <TabelaFornecedores exibirFormulario={setExibirFormulario} />
+                        exibirFormulario ? <FormCadFornecedor exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} /> : <TabelaFornecedores exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} />
                     }
                 </Page>
             </Container>

@@ -1,12 +1,21 @@
 import { Button, Container, Table } from "react-bootstrap";
 import "./Tabela.css";
+import { useState } from "react";
+import { Alert } from "react-bootstrap";
 
 
 export default function TabelaFornecedor(props) {
 
+    const [alerta,setAlerta] = useState(false);
+
     function excluir(fornecedor){
         if(window.confirm('Deseja realmente excluir? '))
-        props.setLista(props.lista.filter((itemLista=> fornecedor.cnpj!==itemLista.cnpj)))
+        props.setLista(props.lista.filter((itemLista=> fornecedor.cnpj!==itemLista.cnpj)));
+
+        setAlerta(true);
+        setTimeout(() => {
+            setAlerta(false);
+        }, 3000);
     }
 
     function editarfornecedor(fornecedor){
@@ -68,6 +77,11 @@ export default function TabelaFornecedor(props) {
                     }
                 </tbody>
             </Table>
+            {alerta && (
+                <Alert variant="danger" className="mt-3">
+                    Exclusao de fornecedor realizada com sucesso!
+                </Alert>
+            )}
         </Container>
     );
 }

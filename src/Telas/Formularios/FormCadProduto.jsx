@@ -113,7 +113,7 @@ export default function FormCadProduto(props) {
 
           {
             alerta? <Alert variant="success" className="mt-3">
-            Cadastro bem-sucedido! Esta mensagem desaparecerá em 3 segundos.
+            Cadastro de produto bem-sucedido
           </Alert>:<></>
           }
           
