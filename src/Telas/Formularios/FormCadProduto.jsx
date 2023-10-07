@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import "./FormStyle.css";
 import { Container } from 'react-bootstrap';
 
+import AtualizarProduto from '../../ferramentas/atualizarProduto';
 
 export default function FormCadProduto(props) {
   const [validated, setValidated] = useState(false);
@@ -21,18 +22,26 @@ export default function FormCadProduto(props) {
   function handleSubmit(event){
     const form = event.currentTarget;
     if (form.checkValidity()) {
-      setAlerta(true);
-      setValidated(true);
-      const lista = JSON.parse(localStorage.getItem("produtos"))
-      let json = props.produto
-      json.id = lista.length + 1 
-      lista.push(json)
-      localStorage.setItem("produtos",JSON.stringify(lista))
-      setTimeout(() => {
-        setAlerta(false);
-        setValidated(false)
-        props.setProduto(props.tipoJson)
-      }, 3000);
+      if(!props.modoEdicao){
+        setAlerta(true);
+        setValidated(true);
+        const lista = JSON.parse(localStorage.getItem("produtos"))
+        let json = props.produto
+        json.id = lista.length + 1 
+        lista.push(json)
+        localStorage.setItem("produtos",JSON.stringify(lista))
+        setTimeout(() => {
+          setAlerta(false);
+          props.setProduto(props.tipoJson)
+        }, 3000);
+      }
+      else{
+        AtualizarProduto(props.produto)
+        props.setmodoEdicao(false)
+        window.location.reload()
+      }
+    setValidated(false)
+
     }
     setValidated(true);
     event.preventDefault();
@@ -95,15 +104,19 @@ export default function FormCadProduto(props) {
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
-          <Button variant='dark' className='cad-produto-button' type="submit">Cadastrar Produto</Button>
+          <Button variant='dark' className='cad-produto-button' type="submit">{props.modoEdicao? "Atualizar Produto":"Cadastrar Produto"}</Button>
+          {""}
           <Button variant='warning' className='cad-produto-button' onClick={() => {
             props.exibirFormulario(false);
+            props.setProduto(props.tipoJson)
           }}>Voltar</Button>
-          {alerta && (
-            <Alert variant="success" className="mt-3">
-              Cadastro bem-sucedido! Esta mensagem desaparecerá em 3 segundos.
-            </Alert>
-          )}
+
+          {
+            alerta? <Alert variant="success" className="mt-3">
+            Cadastro bem-sucedido! Esta mensagem desaparecerá em 3 segundos.
+          </Alert>:<></>
+          }
+          
         </Form>
     </Container>
   );
