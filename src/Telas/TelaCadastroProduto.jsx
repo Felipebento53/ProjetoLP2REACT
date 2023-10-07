@@ -19,13 +19,14 @@ export default function TelaCadastroProduto(props) {
         "preco":""
     }
     const [produtoEdicao,setProdutoEdicao] = useState(tipoJson)
+    const [modoEdicao,setmodoEdicao] = useState(false)
 
     return (
         <div className="tela-cad">
             <Container>
                 <Page>
                     {
-                        exibirFormulario ? <FormCadProduto exibirFormulario={setExibirFormulario} produto={produtoEdicao} setProduto={setProdutoEdicao} tipoJson={tipoJson} /> : <TabelaProdutos exibirFormulario={setExibirFormulario} />
+                        exibirFormulario ? <FormCadProduto exibirFormulario={setExibirFormulario} produto={produtoEdicao} setProduto={setProdutoEdicao} tipoJson={tipoJson} modoEdicao={modoEdicao} setmodoEdicao = {setmodoEdicao} /> : <TabelaProdutos exibirFormulario={setExibirFormulario} modoEdicao={modoEdicao} setmodoEdicao = {setmodoEdicao} setEdicao={setProdutoEdicao}/>
                     }
                 </Page>
             </Container>

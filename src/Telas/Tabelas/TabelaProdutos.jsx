@@ -8,6 +8,7 @@ export default function TabelaProdutos(props) {
             <div className="btn-tabela-produto">
                 <Button variant="ligth" type="button" onClick={()=>{
                     props.exibirFormulario(true);
+                    props.setmodoEdicao(false)
                 }}>Novo Produto</Button>
             </div>
             <Table className="table table-dark table-hover" striped bordered hover>
@@ -25,7 +26,7 @@ export default function TabelaProdutos(props) {
                 <tbody>
                     {
                         lista.map((produto)=>
-                            <RenderizadorProduto  key={produto.id} produto={produto}/>
+                            <RenderizadorProduto  key={produto.id} produto={produto} setmodoEdicao={props.setmodoEdicao} formulario={props.exibirFormulario} setEdicao={props.setEdicao} acoes={true} />
                         )
                     }
                 </tbody>

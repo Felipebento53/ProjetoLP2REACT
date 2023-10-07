@@ -20,6 +20,7 @@ export function Header(props) {
                                         <NavDropdown.Item as={Link} to="/cliente">Cliente</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/produto">Produto</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/fornecedor">Fornecedor</NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/categoria">Categorias</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </div>
