@@ -64,7 +64,7 @@ export default function FormCadFornecedor(props) {
                             value={fornecedor.nome}
                             onChange={ManipularMudancas}
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <Form.Control.Feedback type='invalid'>Informe o nome!!</Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId="validationCustom02">
                         <Form.Label>CNPJ</Form.Label>
