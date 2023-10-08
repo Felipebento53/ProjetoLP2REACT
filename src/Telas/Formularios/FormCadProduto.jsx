@@ -13,6 +13,7 @@ import AtualizarProduto from '../../ferramentas/atualizarProduto';
 export default function FormCadProduto(props) {
   const [validated, setValidated] = useState(false);
   const [alerta, setAlerta] = useState(false);
+  var confirm = 0
 
   function manipularMudancas(e) {
     const componente = e.currentTarget;
@@ -33,6 +34,7 @@ export default function FormCadProduto(props) {
         setTimeout(() => {
           setAlerta(false);
           props.setProduto(props.tipoJson)
+          setValidated(false)
         }, 3000);
       }
       else{
@@ -40,10 +42,12 @@ export default function FormCadProduto(props) {
         props.setmodoEdicao(false)
         window.location.reload()
       }
-    setValidated(false)
-
+      confirm=1
     }
-    setValidated(true);
+    if(confirm===0)
+      setValidated(true);
+    else
+      confirm=0
     event.preventDefault();
     event.stopPropagation();
     
@@ -113,7 +117,7 @@ export default function FormCadProduto(props) {
 
           {
             alerta? <Alert variant="success" className="mt-3">
-            Cadastro de produto bem-sucedido
+              Cadastro de produto bem-sucedido
           </Alert>:<></>
           }
           
