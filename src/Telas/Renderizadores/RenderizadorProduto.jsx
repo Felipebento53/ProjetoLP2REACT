@@ -3,9 +3,12 @@ import { Button } from "react-bootstrap";
 export default function RenderizadorProduto(props) {
   function excluir(produto) {
         let lista = JSON.parse(localStorage.getItem("produtos"));
-        lista = lista.filter((itemLista) => itemLista.id !== produto.id);
-        localStorage.setItem("produtos", JSON.stringify(lista));
-        window.location.reload();
+        if(window.confirm('Deseja realmente excluir esse produto?')){
+          lista = lista.filter((itemLista) => itemLista.id !== produto.id);
+          localStorage.setItem("produtos", JSON.stringify(lista));
+          window.location.reload();
+        }
+        
   }
 
   return (
