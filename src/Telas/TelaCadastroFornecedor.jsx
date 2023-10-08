@@ -25,7 +25,7 @@ export default function TelaCadastroFornecedor(props) {
                     {
                         //dinâmica em que o usuário irá alternar entre o formulário de cadastro
                         //e a visualização do registros já cadastrados.
-                        exibirFormulario ? <FormCadFornecedor exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} /> : <TabelaFornecedores exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} />
+                        exibirFormulario ? <FormCadFornecedor exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornecedorEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} /> : <TabelaFornecedores exibirFormulario={setExibirFormulario} lista={listaFornecedores} setLista={setListaFornecedores} fornEdicao={fornEdicao} setFornEdicao={setFornEdicao} modoEdicao={modoEdicao} setEdicao={setModoEdicao} />
                     }
                 </Page>
             </Container>

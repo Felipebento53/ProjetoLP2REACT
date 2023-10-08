@@ -1,14 +1,25 @@
-/// Terminar os codigos do professor nesta tela
-/// Arrumar o excluir
+// props.setLista([...props.lista.filter((itemCliente) => itemCliente.cpf !== cliente.cpf)])
+// props.setLista([...props.lista, cliente])
+
+
 import { Button, Container, Form, Row, Col, FloatingLabel, Alert } from "react-bootstrap";
 import { useState } from "react";
 import "./FormStyle.css";
 
 export default function FormCadCliente(props) {
-    const estadoInicialCliente = props.clienteEdicao
     const [cliente, setCliente] = useState(props.clienteEdicao);
     const [formValidado, setFormValidado] = useState(false);
     const [alerta, setAlerta] = useState(false);
+    const tipoJson = {
+        cpf:'',
+        nome:'',
+        endereco:'',
+        numero:'',
+        bairro:'',
+        cidade:'',
+        uf:'SP',
+        cep:''
+    }
 
     function ManipularMudancas(e) {
         const componente = e.currentTarget;
@@ -17,7 +28,7 @@ export default function FormCadCliente(props) {
 
     function ManipularSubmit(e) {
         const form = e.currentTarget;
-
+        var lista
         if (form.checkValidity()) {
             //todos os campos preenchidos
             //mandar os dados para o backend
@@ -26,11 +37,15 @@ export default function FormCadCliente(props) {
                 props.setLista([...props.lista, cliente])
             } else {
                 //Esta no modo edicao
-                props.setLista([...props.lista.filter((itemCliente) => itemCliente.cpf !== cliente.cpf)])
-                props.setLista([...props.lista, cliente])
-                props.setEdicao(false)
+                let i=0;
+                while(i<props.lista.length && props.lista[i].cpf !== cliente.cpf)
+                    i++
+                lista = props.lista
+                lista[i]=cliente
+                props.setLista(lista)
             }
-            setCliente(estadoInicialCliente);
+            if(!props.modoEdicao)  
+                setCliente(tipoJson)
             setFormValidado(false);
         }
         else {
@@ -63,7 +78,14 @@ export default function FormCadCliente(props) {
                             <Form.Group>
                                 <p>CPF:</p>
                                 <FloatingLabel label="CPF:" className="mb-3">
-                                    <Form.Control type="text" placeholder="000.000.000-00" id="cpf" name="cpf" value={cliente.cpf} onChange={ManipularMudancas} required />
+                                    {
+                                    props.modoEdicao?
+                                    <Form.Control type="text" placeholder="000.000.000-00" id="cpf" name="cpf" value={cliente.cpf} onChange={ManipularMudancas} required disabled/>
+                                    :
+                                    <Form.Control type="text" placeholder="000.000.000-00" id="cpf" name="cpf" value={cliente.cpf} onChange={ManipularMudancas} required/>
+
+                                    }
+                                    
                                 </FloatingLabel>
                                 <Form.Control.Feedback type="invalid">Informe o cpf!</Form.Control.Feedback>
                             </Form.Group>
@@ -191,6 +213,7 @@ export default function FormCadCliente(props) {
                             <Button type="button" variant="warning" onClick={() => {
                                 props.exibirFormulario(false);
                                 props.setEdicao(false)
+                                props.setClienteEdicao(tipoJson)
                             }}>Voltar</Button>
                         </Col>
                     </Row>

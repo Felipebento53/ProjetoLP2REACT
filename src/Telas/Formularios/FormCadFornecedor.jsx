@@ -18,17 +18,22 @@ export default function FormCadFornecedor(props) {
     }
 
     function ManipularSubmit(e) {
+        var lista;
         const form = e.currentTarget;
         if (form.checkValidity()) {
             if (!props.modoEdicao) {
                 props.setLista([...props.lista, fornecedor])
             }
             else {
-                props.setLista([...props.lista.filter((itemFornecedor) => itemFornecedor.cnpj !== fornecedor.cnpj)])
-                props.setLista([...props.lista, fornecedor])
-                props.setEdicao(false)
+                let i=0
+                while(i<props.lista.length && props.lista[i].cnpj!== fornecedor.cnpj)
+                    i++
+                lista = props.lista
+                lista[i]=fornecedor
+                props.setLista(lista)
             }
-            setFornecedor(estadoInicialFornecedor);
+            if(!props.modoEdicao)
+                setFornecedor(estadoInicialFornecedor);
             setFormValidado(false);
         }
         else {
@@ -59,8 +64,8 @@ export default function FormCadFornecedor(props) {
                             required
                             type="text"
                             placeholder="Nome..."
-                            name='nome-fornecedor'
-                            id='nome-fornecedor'
+                            name='nome'
+                            
                             value={fornecedor.nome}
                             onChange={ManipularMudancas}
                         />
@@ -73,7 +78,7 @@ export default function FormCadFornecedor(props) {
                             type="text"
                             placeholder="00.000.000/0001-00"
                             name='cnpj'
-                            id='cnpj'
+                            
                             value={fornecedor.cnpj}
                             onChange={ManipularMudancas}
                         />
@@ -83,15 +88,15 @@ export default function FormCadFornecedor(props) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6" controlId="validationCustom03">
                         <Form.Label>Cidade</Form.Label>
-                        <Form.Control type="text" placeholder="Cidade do fornecedor..." id='cidade-fornecedor' name='cidade-fornecedor' value={fornecedor.cidade} onChange={ManipularMudancas} required />
+                        <Form.Control type="text" placeholder="Cidade do fornecedor..."  name='cidade' value={fornecedor.cidade} onChange={ManipularMudancas} required />
                         <Form.Control.Feedback type="invalid">
                             Por favor digite a cidade!
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationCustom04">
                         <Form.Label>UF</Form.Label>
-                        <Form.Select aria-label="Unidades Federativas brasileiras" name='uf-fornecedor' id='uf-fornecedor' onChange={ManipularMudancas} value={fornecedor.uf} required>
-                            <option value="SP" selected>São Paulo</option>
+                        <Form.Select aria-label="Unidades Federativas brasileiras" name='uf'  onChange={ManipularMudancas} value={fornecedor.uf} required>
+                            <option value="SP">São Paulo</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -125,7 +130,7 @@ export default function FormCadFornecedor(props) {
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationCustom05">
                         <Form.Label>CEP</Form.Label>
-                        <Form.Control type="text" placeholder="CEP do fornecedor..." id='cep-fornecedor' name='cep-fornecedor' value={fornecedor.cep} onChange={ManipularMudancas} required />
+                        <Form.Control type="text" placeholder="CEP do fornecedor..."  name='cep' value={fornecedor.cep} onChange={ManipularMudancas} required />
                         <Form.Control.Feedback type="invalid">
                             Por favor digite o CEP!
                         </Form.Control.Feedback>
@@ -138,6 +143,13 @@ export default function FormCadFornecedor(props) {
                     <Col md={6} offset={5}>
                         <Button type="button" variant="warning" onClick={() => {
                             props.exibirFormulario(false);
+                            props.setFornEdicao({
+                                cnpj:'',
+                                nome:'',
+                                cidade:'',
+                                uf:'SP',
+                                cep:''
+                            })
                         }}>Voltar</Button>
                     </Col>
                 </Row>
